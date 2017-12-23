@@ -51,7 +51,7 @@ void stringExterner(String * string, int externSize){
     
     string->size = externSize;
 }
-void addChar(String * string, char c){
+void addChar(String * string, char c, int index){
     if(!string){
         fprintf(stderr, "There is no string to extern!\n");
         return;
@@ -100,7 +100,19 @@ int deleteCharInterval(String * string, int start, int end){
     
     return 0;
 }
-void addCharArray(String * string, char * word);
+void addCharArray(String * string, char * word, int index){
+    int wordSize = strlen(word);
+    
+    if(wordSize < 1){
+        return;
+    }
+    
+    while(string->lastchar + wordSize >= string->size){
+        stringExterner(string, string->size * 2);
+    }
+    
+    
+}
 int locateFirstChar(String * string, char c);
 int locateLastChar(String * string, char c);
 void printString(String * string){
