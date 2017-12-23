@@ -23,6 +23,9 @@ void deleteCommand(Command * command);
 char * getCommandArgumant(Command * command);
 void addCommandArgumant(Command * command, char * argumant);
 
+
+
+
 // String Data Type Codes
 String * createString(){
     String * created = (String *) malloc(sizeof(String));
@@ -101,6 +104,10 @@ int deleteCharInterval(String * string, int start, int end){
     return 0;
 }
 void addCharArray(String * string, char * word, int index){
+    if(index >= string->size || index < 0) {
+        return 1;
+    }
+    
     int wordSize = strlen(word);
     
     if(wordSize < 1){
@@ -111,6 +118,14 @@ void addCharArray(String * string, char * word, int index){
         stringExterner(string, string->size * 2);
     }
     
+    if(index == string->lastchar){
+        memcpy(string->word + sizeof(char) * index, word, sizeof(char) * wordSize);
+    } else {
+        memmove(string->word + sizeof(char) * (index + wordSize), string->word + sizeof(char) * (index), sizeof(char) * (string->lastchar - index));
+        memcpy(string->word + sizeof(char) * index, word, sizeof(char) * wordSize);
+    }
+    
+    string->lastchar += wordSize;
     
 }
 int locateFirstChar(String * string, char c);

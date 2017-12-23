@@ -26,24 +26,10 @@ int main(int argc, char** argv) {
     
     String * str = createString();
     
-    addChar(str, 'd');
-    addChar(str, 'e');
-    addChar(str, 'n');
-    addChar(str, 'i');
-    addChar(str, 'z');
-    addChar(str, 'd');
-    addChar(str, 'e');
-    addChar(str, 'n');
-    addChar(str, 'i');
-    addChar(str, 'z');
-    addChar(str, 'd');
-    addChar(str, 'e');
-    addChar(str, 'n');
-    addChar(str, 'i');
-    addChar(str, 'z');
+    addCharArray(str, "kadirkundakcioglu", 0);
     printString(str);
     
-    deleteCharInterval(str, 1, 3);
+    addCharArray(str,"abdul", 0);
     
     printString(str);
     /*
