@@ -128,7 +128,9 @@ void addCharArray(String * string, char * word, int index){
     string->lastchar += wordSize;
     
 }
-int locateFirstChar(String * string, char c);
+int locateFirstChar(String * string, char c){
+    
+}
 int locateLastChar(String * string, char c);
 void printString(String * string){
     printf("lastchar : %d, size : %d | %s\n", string->lastchar, string->size, string->word);
