@@ -23,20 +23,22 @@ typedef struct {
     size_t dataSize;
     long lastElement;
     long size;
+    void (* arrayList_nodeClear) (void * data);
 } ArrayList;
 
 typedef ArrayList* ArrayListPtr;
 
 ArrayList * arrayList_create(size_t dataSize);
-void arrayList_resize(ArrayList * array, int newSize);
+void arrayList_resize(ArrayList * array, long newSize);
 void arrayList_append(ArrayList * array, void * data);
-void arrayList_insert(ArrayList * array, void * data, int index);
+void arrayList_insert(ArrayList * array, void * data, long index);
 // void arrayList_insert_arrayList(ArrayList * array, ArrayList * data, int startIndex, int endIndex);
 int arrayList_getIndex(ArrayList * array, void * data);
+void * arrayList_getData(ArrayList * array, long index);
 void * arrayList_removeLast(ArrayList * array);
 void * arrayList_removeFirst(ArrayList * array);
-void * arrayList_remove(ArrayList * array, int index);
-void * arrayList_clear(ArrayList * array);
+void arrayList_remove(ArrayList * array, long index);
+void arrayList_clear(ArrayList * array);
 void * arrayList_setToZero(ArrayList * array);
 
 

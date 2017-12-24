@@ -23,22 +23,47 @@
  * 
  */
 
+void dataClear(void * data);
+
 int main(int argc, char** argv) {
     
-    ArrayList * list = arrayList_create(sizeof(char));
-    char c = 'k';
-    char *ptr = &c;
-    arrayList_append(list, ptr);
-    arrayList_append(list, ptr);
-    arrayList_append(list, ptr);
-    arrayList_append(list, ptr);
-    arrayList_append(list, ptr);
+    ArrayList * list = arrayList_create(sizeof(char) * 5);
+    char * c = "kadir";
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    arrayList_append(list, c);
     
-    c = 'l';
-    arrayList_insert(list, ptr, 2);
+    c = "iremk";
+    arrayList_insert(list, c, 2);
     
-    printf("%s\n", list->data);
+    printf("size : %d, lastElement : %d | %s\n",list->size, list->lastElement, list->data);
     
+    c = "kadir";
+    
+    printf("%d\n", arrayList_getIndex(list, c));
+    
+    
+    list->arrayList_nodeClear = dataClear;
+    arrayList_clear(list);
+    
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    arrayList_append(list, c);
+    c = "iremk";
+    arrayList_insert(list, c, 2);
+    
+    printf("size : %d, lastElement : %d | %s\n",list->size, list->lastElement, list->data);
+    
+    arrayList_remove(list, 2);
+    arrayList_remove(list, 2);
+    arrayList_remove(list, 2);
+    arrayList_remove(list, 2);
+    
+    printf("size : %d, lastElement : %d | %s\n",list->size, list->lastElement, list->data);
     
     /*
     Command command;
@@ -68,3 +93,6 @@ int exitCheck(Command command){
     return 1;
 }
 
+void dataClear(void * data){
+    //free(data);
+}
