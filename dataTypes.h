@@ -34,11 +34,11 @@ typedef struct {
 
 String * createString();
 void stringExterner(String * string, int externSize);
-void addChar(String * string, char c);
+void addChar(String * string, char c, int index);
 void deleteString(String * string);
 int deleteChar(String * string, int index);
 int deleteCharInterval(String * string, int start, int end);
-void addCharArray(String * string, char * word);
+void addCharArray(String * string, char * word, int index);
 int locateFirstChar(String * string, char c);
 int locateLastChar(String * string, char c);
 void printString(String * string);

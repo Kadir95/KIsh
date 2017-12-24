@@ -17,6 +17,7 @@
 #include <string.h>
 
 #include "dataTypes.h"
+#include "arrayList.h"
 
 /*
  * 
@@ -24,28 +25,21 @@
 
 int main(int argc, char** argv) {
     
-    String * str = createString();
+    ArrayList * list = arrayList_create(sizeof(char));
+    char c = 'k';
+    char *ptr = &c;
+    arrayList_append(list, ptr);
+    arrayList_append(list, ptr);
+    arrayList_append(list, ptr);
+    arrayList_append(list, ptr);
+    arrayList_append(list, ptr);
     
-    addChar(str, 'd');
-    addChar(str, 'e');
-    addChar(str, 'n');
-    addChar(str, 'i');
-    addChar(str, 'z');
-    addChar(str, 'd');
-    addChar(str, 'e');
-    addChar(str, 'n');
-    addChar(str, 'i');
-    addChar(str, 'z');
-    addChar(str, 'd');
-    addChar(str, 'e');
-    addChar(str, 'n');
-    addChar(str, 'i');
-    addChar(str, 'z');
-    printString(str);
+    c = 'l';
+    arrayList_insert(list, ptr, 2);
     
-    deleteCharInterval(str, 1, 3);
+    printf("%s\n", list->data);
     
-    printString(str);
+    
     /*
     Command command;
     while (exitCheck(command)){
