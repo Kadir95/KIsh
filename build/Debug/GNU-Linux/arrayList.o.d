@@ -1,5 +1,3 @@
-build/Debug/GNU-Linux/arrayList.o: arrayList.c arrayList.h dataTypes.h
+build/Debug/GNU-Linux/arrayList.o: arrayList.c arrayList.h
 
 arrayList.h:
-
-dataTypes.h:

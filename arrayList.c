@@ -9,7 +9,6 @@
 #include <stdio.h>
 
 #include "arrayList.h"
-#include "dataTypes.h"
 
 /*
  Create arraylist. Default size is 4
@@ -89,7 +88,7 @@ int arrayList_getIndex(ArrayList * array, void * data){
 }
 
 /*
- 
+ Returns the data which is located in the index 
  */
 void * arrayList_getData(ArrayList * array, long index){
     if(array->lastElement <= index || index < 0){
@@ -109,8 +108,41 @@ void * arrayList_getData(ArrayList * array, long index){
 /*
  
  */
-void * arrayList_removeLast(ArrayList * array);
-void * arrayList_removeFirst(ArrayList * array);
+void * arrayList_removeLast(ArrayList * array){
+    void * result = arrayList_getData(array, array->lastElement - 1);
+    
+    memset(array->data + array->dataSize * (array->lastElement - 1), 0, array->dataSize);
+    
+    array->lastElement--;
+    
+    if(array->lastElement < array->size / 2){
+        arrayList_resize(array, array->size / 4 * 3);
+    }
+    
+    return result;
+}
+
+/*
+ 
+ */
+void * arrayList_removeFirst(ArrayList * array){
+    void * result = arrayList_getData(array, 0);
+    
+    memmove(array->data, array->data + array->dataSize, array->dataSize);
+    memset(array->data + array->dataSize * (array->lastElement - 1), 0, array->dataSize);
+    
+    array->lastElement--;
+    
+    if(array->lastElement < array->size / 2){
+        arrayList_resize(array, array->size / 4 * 3);
+    }
+    
+    return result;
+}
+
+/*
+ 
+ */
 void arrayList_remove(ArrayList * array, long index){
     if(!array->arrayList_nodeClear){
         fprintf(stderr, "Warning at arrayList_remove : Node clear function wasn't initialized \n\t if data have any pointer pointed datas won't be cleared!!\n");
@@ -130,6 +162,10 @@ void arrayList_remove(ArrayList * array, long index){
     }
     
 }
+
+/*
+ 
+ */
 void arrayList_clear(ArrayList * array){
     if(!array->arrayList_nodeClear){
         fprintf(stderr, "Error at arrayList_clear : Node clear function wasn't initialized \n");
@@ -150,6 +186,10 @@ void arrayList_clear(ArrayList * array){
     
     return;
 }
+
+/*
+ 
+ */
 void * arrayList_setToZero(ArrayList * array){  // set all array values to zero with memset 
     memset(array->data, 0, array->dataSize * array->size);
 }
