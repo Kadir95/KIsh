@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#hhhh
-
 #https://stackoverflow.com/questions/10278513/bash-shell-decimal-to-binary-conversion
 function convertIntvalToBase () # (Val Base)
 {
@@ -46,12 +44,12 @@ function inverter()
  	echo usage 2:" "integer "base=2" -i  '#'to get inverse of integer in binary base
  	echo
  	else
- 		if [ $3 !=  ]
+ 		if [ -z $3 ]
  			then
  			#echo "3. is null"
  			convertIntvalToBase $1 $2
  			echo $1 in base $2 is $?
- 		elif [ $3 = "-i" ]
+ 		elif [ "$3" == "-i" ]
  			then
  			if [  $2 -eq 2  ]
  				then

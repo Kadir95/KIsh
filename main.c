@@ -80,35 +80,17 @@ void func(String * str) {
     for (int i = 0; i < list->lastElement; i++) {
         printf("token %d : %s\n", i, arrayList_getData(list, i));
     }
-
-    //printf("%s\n", arrayList_getData(list, 0));
-    char * argv[4];
-    argv[1] = arrayList_getData(list, 0);
-
-    int h[2];
-    h[0] = 5;
-    h[1] = 2;
-
-
+    
     char *cmdargs[] = {
-        "/bin/bash",
-        "-c",
-        " ls -l",
-        NULL
-    };
-
-    char *cmdargs2[] = {
         "/bin/bash",
         "./dsd_helper.sh",
         arrayList_getData(list, 1),
         arrayList_getData(list, 2),
         arrayList_getData(list, 3),
         NULL};
-    //printf("%s\n", arrayList_getData(list, 0));
 
-    argv[1] = arrayList_getData(list, 0);
     if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { //The linux command ls –l is called 
-        execv(cmdargs2[0], cmdargs2);
+        execv(cmdargs[0], cmdargs);
     }
 
 }
