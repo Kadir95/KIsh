@@ -14,6 +14,8 @@
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
+#include "arrayList.h"
+
 typedef struct {
     char **command;
     int argn;
@@ -37,6 +39,8 @@ void stringExterner(String * string, int externSize);
 void addChar(String * string, char c, int index);
 void deleteString(String * string);
 int deleteChar(String * string, int index);
+//void cleanString(String * string);
+ArrayList * split(String * string, char * arg);
 int deleteCharInterval(String * string, int start, int end);
 void addCharArray(String * string, char * word, int index);
 int locateFirstChar(String * string, char c);

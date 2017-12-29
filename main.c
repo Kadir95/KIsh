@@ -22,77 +22,93 @@
 /*
  * 
  */
-
+int exitCheck(String * command);
 void dataClear(void * data);
+void func(String * str);
 
 int main(int argc, char** argv) {
+    /*String * strr = createString();
     
-    ArrayList * list = arrayList_create(sizeof(char) * 5);
-    char * c = "kadir";
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    
-    c = "iremk";
-    arrayList_insert(list, c, 2);
-    
-    printf("size : %d, lastElement : %d | %s\n",list->size, list->lastElement, list->data);
-    
-    c = "kadir";
-    
-    printf("%d\n", arrayList_getIndex(list, c));
+    addCharArray(strr, "kadirkundakciofgsdgsdfsdfsdfg7ilkay7nehir", 0);
+    printf("string : %s\n", strr->word);
     
     
-    list->arrayList_nodeClear = dataClear;
-    arrayList_clear(list);
+    ArrayList * list = split(strr, "7");
+    for(int i = 0; i < list->lastElement; i++){
+        printf("part %d : %s\n", i, *((char *)list->data));
+    }
     
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    arrayList_append(list, c);
-    c = "iremk";
-    arrayList_insert(list, c, 2);
-    
-    printf("size : %d, lastElement : %d | %s\n",list->size, list->lastElement, list->data);
-    
-    arrayList_remove(list, 2);
-    arrayList_remove(list, 2);
-    arrayList_remove(list, 2);
-    arrayList_remove(list, 2);
-    
-    printf("size : %d, lastElement : %d | %s\n",list->size, list->lastElement, list->data);
-    
-    /*
+    exit(0);*/
+
+    String * str = createString();
+
     Command command;
-    while (exitCheck(command)){
-        printf("%s | %s <+",getlogin() ,get_current_dir_name());
+    while (exitCheck(str)) {
+
+        deleteCharInterval(str, 0, str->lastchar - 1);
+        printf("%s <+", getlogin());
         char inputChar = '\0';
-        while(inputChar != '\n'){
+        while (inputChar != '\n') {
             inputChar = getchar();
-            if(inputChar != '\n'){
-                
+            if (inputChar != '\n') {
+                addChar(str, inputChar, str->lastchar);
             }
         }
+        //printString(str);
+        func(str);
     }
-    */
+
+    printf("see you :)\n");
     return (EXIT_SUCCESS);
 }
 
-int exitCheck(Command command){
-    if(!command.argn){
-        return 1;
-    }
-    
-    if(strcmp(command.command[0], "exit")){
+int exitCheck(String * command) {
+
+    if (!strcmp(command->word, "exit")) {
         return 0;
     }
-    
     return 1;
 }
 
-void dataClear(void * data){
+void dataClear(void * data) {
     //free(data);
+}
+
+void func(String * str) {
+    //printf("string : %s\n", str->word);
+    ArrayList * list = split(str, " ");
+    for (int i = 0; i < list->lastElement; i++) {
+        printf("token %d : %s\n", i, arrayList_getData(list, i));
+    }
+
+    //printf("%s\n", arrayList_getData(list, 0));
+    char * argv[4];
+    argv[1] = arrayList_getData(list, 0);
+
+    int h[2];
+    h[0] = 5;
+    h[1] = 2;
+
+
+    char *cmdargs[] = {
+        "/bin/bash",
+        "-c",
+        " ls -l",
+        NULL
+    };
+
+    char *cmdargs2[] = {
+        "/bin/bash",
+        "./dsd_helper.sh",
+        arrayList_getData(list, 1),
+        arrayList_getData(list, 2),
+        arrayList_getData(list, 3),
+        NULL};
+    //printf("%s\n", arrayList_getData(list, 0));
+
+    argv[1] = arrayList_getData(list, 0);
+    if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { //The linux command ls –l is called 
+        execv(cmdargs2[0], cmdargs2);
+    }
+
 }
