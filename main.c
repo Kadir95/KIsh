@@ -80,17 +80,27 @@ void func(String * str) {
     for (int i = 0; i < list->lastElement; i++) {
         printf("token %d : %s\n", i, arrayList_getData(list, i));
     }
-    
+
     char *cmdargs[] = {
         "/bin/bash",
         "./dsd_helper.sh",
         arrayList_getData(list, 1),
         arrayList_getData(list, 2),
         arrayList_getData(list, 3),
-        NULL};
+        NULL
+    };
+
+    char *cmdargs2[] = {
+        "/bin/bash",
+        "./kill_user_processes.sh",
+        NULL
+    };
+
 
     if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { //The linux command ls –l is called 
         execv(cmdargs[0], cmdargs);
+    } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) { //The linux command ls –l is called 
+        execv(cmdargs2[0], cmdargs2);
     }
 
 }
