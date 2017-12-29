@@ -7,13 +7,13 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=GNU-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=comp205_project
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/comp205_project
-CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=comp205project.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/comp205project.tar
+CND_PLATFORM_Debug=GNU-MacOSX
+CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
+CND_ARTIFACT_NAME_Debug=kish
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/kish
+CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
+CND_PACKAGE_NAME_Debug=kish.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/kish.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux

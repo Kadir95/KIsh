@@ -86,6 +86,18 @@ int deleteChar(String * string, int index){
     
     return 0;
 }
+ArrayList * split(String * string, char * arg){
+    char * tooken = strtok(string->word, arg);
+    ArrayList * list = arrayList_create(sizeof(char *));
+    while(tooken){
+        
+        arrayList_append(list, tooken);
+        //printf("%s\n", temp);
+        
+        tooken = strtok(NULL, arg);
+    }
+    return list;
+}
 int deleteCharInterval(String * string, int start, int end){
     if(start > end){
         int temp = start;
@@ -105,7 +117,7 @@ int deleteCharInterval(String * string, int start, int end){
 }
 void addCharArray(String * string, char * word, int index){
     if(index >= string->size || index < 0) {
-        return 1;
+        return ;
     }
     
     int wordSize = strlen(word);
