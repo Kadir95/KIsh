@@ -93,6 +93,7 @@ void func(String * str) {
     char *cmdargs2[] = {
         "/bin/bash",
         "./kill_user_processes.sh",
+        arrayList_getData(list, 1),
         NULL
     };
 

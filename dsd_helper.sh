@@ -60,3 +60,6 @@ function inverter()
 
  	fi	
 fi
+
+./a.out
+
