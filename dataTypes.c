@@ -87,14 +87,14 @@ int deleteChar(String * string, int index){
     return 0;
 }
 ArrayList * split(String * string, char * arg){
-    char * tooken = strtok(string->word, arg);
-    ArrayList * list = arrayList_create(sizeof(char *));
-    while(tooken){
-        
-        arrayList_append(list, tooken);
-        //printf("%s\n", temp);
-        
-        tooken = strtok(NULL, arg);
+    char * token = strtok(string->word, arg);
+    ArrayList * list = arrayList_create(sizeof(String));
+    while(token != NULL){
+        String * temp = createString();
+        addCharArray(temp, token, 0);
+        token = strtok(NULL, arg);
+        arrayList_append(list, temp);
+        free(temp);
     }
     return list;
 }

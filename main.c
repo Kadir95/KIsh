@@ -27,18 +27,33 @@ void dataClear(void * data);
 void func(String * str);
 
 int main(int argc, char** argv) {
-    /*String * strr = createString();
     
-    addCharArray(strr, "kadirkundakciofgsdgsdfsdfsdfg7ilkay7nehir", 0);
+    /*
+    ArrayList * liste = arrayList_create(sizeof(String));
+    for(int i = 0; i < 5; i++){
+        String * temp = createString();
+        addCharArray(temp, "kadirkundakciogluthsfghfghsfghfsghsfghfghfgh", 0);
+        arrayList_append(liste, temp);
+    }
+    
+    for(int i = 0; i < liste->lastElement; i++){
+        printString(arrayList_getData(liste, i));
+    }
+    */
+    
+    String * strr = createString();
+    
+    addCharArray(strr, "kadirkundakciofgsdgsdfsdfsdfg ilkaynsfghsfghsdfhsdfgsdfgsfdgdgfdssfdggsdfgsdg nehir", 0);
     printf("string : %s\n", strr->word);
     
     
-    ArrayList * list = split(strr, "7");
+    ArrayList * list = split(strr, " ");
+    
     for(int i = 0; i < list->lastElement; i++){
-        printf("part %d : %s\n", i, *((char *)list->data));
+        printString(arrayList_getData(list, i));
     }
     
-    exit(0);*/
+    exit(0);
 
     String * str = createString();
 
