@@ -17,14 +17,13 @@
 #include "arrayList.h"
 
 typedef struct {
-    char **command;
-    int argn;
+    ArrayList *list;
 }Command;
 
 Command * createCommand();
-void commandExterner(Command * command);
 void deleteCommand(Command * command);
-char * getCommandArgumant(Command * command);
+char * getCommandExec(Command * command);
+char ** getCommandArgumant(Command * command);
 void addCommandArgumant(Command * command, char * argumant);
 
 
@@ -46,6 +45,5 @@ void addCharArray(String * string, char * word, int index);
 int locateFirstChar(String * string, char c);
 int locateLastChar(String * string, char c);
 void printString(String * string);
-
 #endif /* DATATYPES_H */
 

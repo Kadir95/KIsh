@@ -22,39 +22,11 @@
 /*
  * 
  */
+
 int exitCheck(String * command);
 void dataClear(void * data);
-void func(String * str);
 
 int main(int argc, char** argv) {
-    
-    /*
-    ArrayList * liste = arrayList_create(sizeof(String));
-    for(int i = 0; i < 5; i++){
-        String * temp = createString();
-        addCharArray(temp, "kadirkundakciogluthsfghfghsfghfsghsfghfghfgh", 0);
-        arrayList_append(liste, temp);
-    }
-    
-    for(int i = 0; i < liste->lastElement; i++){
-        printString(arrayList_getData(liste, i));
-    }
-    */
-    
-    String * strr = createString();
-    
-    addCharArray(strr, "kadirkundakciofgsdgsdfsdfsdfg ilkaynsfghsfghsdfhsdfgsdfgsfdgdgfdssfdggsdfgsdg nehir", 0);
-    printf("string : %s\n", strr->word);
-    
-    
-    ArrayList * list = split(strr, " ");
-    
-    for(int i = 0; i < list->lastElement; i++){
-        printString(arrayList_getData(list, i));
-    }
-    
-    exit(0);
-
     String * str = createString();
 
     Command command;
@@ -69,8 +41,7 @@ int main(int argc, char** argv) {
                 addChar(str, inputChar, str->lastchar);
             }
         }
-        //printString(str);
-        func(str);
+        printString(str);
     }
 
     printf("see you :)\n");
@@ -89,34 +60,6 @@ void dataClear(void * data) {
     //free(data);
 }
 
-void func(String * str) {
-    //printf("string : %s\n", str->word);
-    ArrayList * list = split(str, " ");
-    for (int i = 0; i < list->lastElement; i++) {
-        printf("token %d : %s\n", i, arrayList_getData(list, i));
-    }
-
-    char *cmdargs[] = {
-        "/bin/bash",
-        "./dsd_helper.sh",
-        arrayList_getData(list, 1),
-        arrayList_getData(list, 2),
-        arrayList_getData(list, 3),
-        NULL
-    };
-
-    char *cmdargs2[] = {
-        "/bin/bash",
-        "./kill_user_processes.sh",
-        arrayList_getData(list, 1),
-        NULL
-    };
-
-
-    if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { //The linux command ls –l is called 
-        execv(cmdargs[0], cmdargs);
-    } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) { //The linux command ls –l is called 
-        execv(cmdargs2[0], cmdargs2);
-    }
-
+int execute(ArrayList * args){
+    execvp(((String *)arrayList_getData(args, 0))->word, NULL);
 }

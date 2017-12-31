@@ -12,16 +12,44 @@
 // Command Data Type Codes
 Command * createCommand(){
     Command * created = (Command *) malloc(sizeof(Command));
-    created->argn = 0;
-    created->command = NULL;
+    created->list = arrayList_create(sizeof(String));
+    created->list->arrayList_nodeClear = deleteString;
     return created;
 }
-void commandExterner(Command * command){
+void deleteCommand(Command * command){
+    arrayList_clear(command->list);
+    free(command->list);
+    free(command);
+}
+char * getCommandExec(Command * command){
+    if(command->list->lastElement < 1){
+        fprintf(stderr, "There is no executible\n");
+    }
+    
+    return ((String *) arrayList_getData(command->list, 0))->word;
+}
+char ** getCommandArgumant(Command * command){
+    if(command->list->lastElement < 2){
+        return NULL;
+    }
+    
+    char **result = (char **) malloc(sizeof(char *) * command->list->lastElement - 1);
+    for(int i = 0; i < command->list->lastElement - 1; i++){
+        result[i] = ((String *) arrayList_getData(command->list, i))->word;
+    }
+    
+    return result;
+}
+void addCommandArgumant(Command * command, char * argumant){
+    if(command->list->lastElement < 1){
+        fprintf(stderr, "There is no executable to add argument!");
+        return;
+    }
+    String * temp = createString();
+    addCharArray(temp, argumant, 0);
+    arrayList_append(command->list, temp);
     return;
 }
-void deleteCommand(Command * command);
-char * getCommandArgumant(Command * command);
-void addCommandArgumant(Command * command, char * argumant);
 
 
 
