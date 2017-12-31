@@ -27,18 +27,6 @@ void dataClear(void * data);
 void func(String * str);
 
 int main(int argc, char** argv) {
-    /*String * strr = createString();
-    
-    addCharArray(strr, "kadirkundakciofgsdgsdfsdfsdfg7ilkay7nehir", 0);
-    printf("string : %s\n", strr->word);
-    
-    
-    ArrayList * list = split(strr, "7");
-    for(int i = 0; i < list->lastElement; i++){
-        printf("part %d : %s\n", i, *((char *)list->data));
-    }
-    
-    exit(0);*/
 
     String * str = createString();
 
@@ -81,7 +69,7 @@ void func(String * str) {
         printf("token %d : %s\n", i, arrayList_getData(list, i));
     }
 
-    char *cmdargs[] = {
+    char *dsd[] = {
         "/bin/bash",
         "./dsd_helper.sh",
         arrayList_getData(list, 1),
@@ -90,18 +78,27 @@ void func(String * str) {
         NULL
     };
 
-    char *cmdargs2[] = {
+    char *killMe[] = {
         "/bin/bash",
         "./kill_user_processes.sh",
         arrayList_getData(list, 1),
         NULL
     };
+    
+    char *org[] = {
+        "/bin/bash",
+        "./organizeFiles.sh",
+        arrayList_getData(list, 1),
+        NULL
+    };
 
 
-    if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { //The linux command ls –l is called 
-        execv(cmdargs[0], cmdargs);
-    } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) { //The linux command ls –l is called 
-        execv(cmdargs2[0], cmdargs2);
+    if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { 
+        execv(dsd[0], dsd);
+    } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) {  
+        execv(killMe[0], killMe);
+    } else if (strcmp(arrayList_getData(list, 0), "org") == 0){
+        execv(org[0], org);
     }
 
 }
