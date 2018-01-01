@@ -12,16 +12,57 @@
 // Command Data Type Codes
 Command * createCommand(){
     Command * created = (Command *) malloc(sizeof(Command));
-    created->argn = 0;
-    created->command = NULL;
+    created->list = arrayList_create(sizeof(String));
+    created->list->arrayList_nodeClear = deleteString;
     return created;
 }
-void commandExterner(Command * command){
+void deleteCommand(Command * command){
+    arrayList_clear(command->list);
+    free(command->list);
+    free(command);
+}
+char * getCommandExec(Command * command){
+    if(command->list->lastElement < 1){
+        fprintf(stderr, "There is no executible\n");
+    }
+    
+    return ((String *) arrayList_getData(command->list, 0))->word;
+}
+char ** getCommandArgumant(Command * command){
+    if(command->list->lastElement < 2){
+        return NULL;
+    }
+    
+    char **result = (char **) malloc(sizeof(char *) * command->list->lastElement - 1);
+    for(int i = 0; i < command->list->lastElement - 1; i++){
+        result[i] = ((String *) arrayList_getData(command->list, i))->word;
+    }
+    
+    return result;
+}
+void addCommandArgumant(Command * command, char * argumant){
+    if(command->list->lastElement < 1){
+        fprintf(stderr, "There is no executable to add argument!");
+        return;
+    }
+    String * temp = createString();
+    addCharArray(temp, argumant, 0);
+    arrayList_append(command->list, temp);
     return;
 }
-void deleteCommand(Command * command);
-char * getCommandArgumant(Command * command);
-void addCommandArgumant(Command * command, char * argumant);
+void addCommandExec(Command * command, char * exec){
+    if(command->list->lastElement > 0){
+        fprintf(stderr, "Command already have an executable!");
+        return;
+    }
+    
+    String * temp = createString();
+    addCharArray(temp, exec, 0);
+    printString(temp);
+    arrayList_insert(command->list, temp, 0);
+    printString(arrayList_getData(command->list, 0));
+    return;
+}
 
 
 
@@ -87,17 +128,30 @@ int deleteChar(String * string, int index){
     return 0;
 }
 ArrayList * split(String * string, char * arg){
+    char * token = strtok(string->word, arg);
+    ArrayList * list = arrayList_create(sizeof(String));
+    while(token){
+        String * temp = createString();
+        addCharArray(temp, token, 0);
+        token = strtok(NULL, arg);
+        arrayList_append(list, temp);
+        free(temp);
+    }
+    return list;
+}
+/*
+ArrayList * split(String * string, char * arg){
     char * tooken = strtok(string->word, arg);
     ArrayList * list = arrayList_create(sizeof(char *));
     while(tooken){
-        
         arrayList_append(list, tooken);
         //printf("%s\n", temp);
-        
         tooken = strtok(NULL, arg);
     }
     return list;
 }
+*/
+
 int deleteCharInterval(String * string, int start, int end){
     if(start > end){
         int temp = start;
@@ -131,7 +185,8 @@ void addCharArray(String * string, char * word, int index){
     }
     
     if(index == string->lastchar){
-        memcpy(string->word + sizeof(char) * index, word, sizeof(char) * wordSize);
+        strcpy(string, word);
+        //memcpy(string->word + sizeof(char) * index, word, sizeof(char) * wordSize);
     } else {
         memmove(string->word + sizeof(char) * (index + wordSize), string->word + sizeof(char) * (index), sizeof(char) * (string->lastchar - index));
         memcpy(string->word + sizeof(char) * index, word, sizeof(char) * wordSize);

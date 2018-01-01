@@ -18,23 +18,22 @@
 
 #include "dataTypes.h"
 #include "arrayList.h"
+#include "exe.h"
 
 /*
  * 
  */
+
 int exitCheck(String * command);
 void dataClear(void * data);
-void func(String * str);
+int execute(Command * cmd);
 
 int main(int argc, char** argv) {
-
     String * str = createString();
-
-    Command command;
+    char buf[256];
     while (exitCheck(str)) {
-
         deleteCharInterval(str, 0, str->lastchar - 1);
-        printf("%s <+", getlogin());
+        printf("%s@%s -<", getlogin(), getcwd(buf, 256));
         char inputChar = '\0';
         while (inputChar != '\n') {
             inputChar = getchar();
@@ -42,8 +41,8 @@ int main(int argc, char** argv) {
                 addChar(str, inputChar, str->lastchar);
             }
         }
-        //printString(str);
-        func(str);
+        printString(str);
+        parser(str);
     }
 
     printf("see you :)\n");
@@ -62,43 +61,7 @@ void dataClear(void * data) {
     //free(data);
 }
 
-void func(String * str) {
-    //printf("string : %s\n", str->word);
-    ArrayList * list = split(str, " ");
-    for (int i = 0; i < list->lastElement; i++) {
-        printf("token %d : %s\n", i, arrayList_getData(list, i));
-    }
-
-    char *dsd[] = {
-        "/bin/bash",
-        "./dsd_helper.sh",
-        arrayList_getData(list, 1),
-        arrayList_getData(list, 2),
-        arrayList_getData(list, 3),
-        NULL
-    };
-
-    char *killMe[] = {
-        "/bin/bash",
-        "./kill_user_processes.sh",
-        arrayList_getData(list, 1),
-        NULL
-    };
-    
-    char *org[] = {
-        "/bin/bash",
-        "./organizeFiles.sh",
-        arrayList_getData(list, 1),
-        NULL
-    };
-
-
-    if (strcmp(arrayList_getData(list, 0), "dsd") == 0) { 
-        execv(dsd[0], dsd);
-    } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) {  
-        execv(killMe[0], killMe);
-    } else if (strcmp(arrayList_getData(list, 0), "org") == 0){
-        execv(org[0], org);
-    }
-
+int execute(Command * cmd){
+    //execvp(, getCommandArgumant(cmd));
+    return system(getCommandExec(cmd));
 }

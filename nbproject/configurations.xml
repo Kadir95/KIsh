@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>arrayList.h</itemPath>
       <itemPath>dataTypes.h</itemPath>
+      <itemPath>exe.h</itemPath>
+      <itemPath>reservedCharacters.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,6 +18,7 @@
                    projectFiles="true">
       <itemPath>arrayList.c</itemPath>
       <itemPath>dataTypes.c</itemPath>
+      <itemPath>exe.c</itemPath>
       <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -51,7 +54,13 @@
       </item>
       <item path="dataTypes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="exe.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="exe.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="reservedCharacters.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -83,7 +92,13 @@
       </item>
       <item path="dataTypes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="exe.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="exe.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="reservedCharacters.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

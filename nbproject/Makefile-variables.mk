@@ -17,11 +17,11 @@ CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/kish.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=comp205_project
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/comp205_project
+CND_ARTIFACT_NAME_Release=kish
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/kish
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=comp205project.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/comp205project.tar
+CND_PACKAGE_NAME_Release=kish.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/kish.tar
 #
 # include compiler specific variables
 #
