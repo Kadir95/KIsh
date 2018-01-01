@@ -18,6 +18,8 @@
 
 typedef struct {
     ArrayList *list;
+    char * standartInput;
+    char * standartOutput;
 }Command;
 
 Command * createCommand();
@@ -25,7 +27,7 @@ void deleteCommand(Command * command);
 char * getCommandExec(Command * command);
 char ** getCommandArgumant(Command * command);
 void addCommandArgumant(Command * command, char * argumant);
-
+void addCommandExec(Command * command, char * exec);
 
 typedef struct {
     char *word;

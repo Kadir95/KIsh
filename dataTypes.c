@@ -50,6 +50,19 @@ void addCommandArgumant(Command * command, char * argumant){
     arrayList_append(command->list, temp);
     return;
 }
+void addCommandExec(Command * command, char * exec){
+    if(command->list->lastElement > 0){
+        fprintf(stderr, "Command already have an executable!");
+        return;
+    }
+    
+    String * temp = createString();
+    addCharArray(temp, exec, 0);
+    printString(temp);
+    arrayList_insert(command->list, temp, 0);
+    printString(arrayList_getData(command->list, 0));
+    return;
+}
 
 
 

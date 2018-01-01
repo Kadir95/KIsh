@@ -25,15 +25,14 @@
 
 int exitCheck(String * command);
 void dataClear(void * data);
+int execute(Command * cmd);
 
 int main(int argc, char** argv) {
     String * str = createString();
-
-    Command command;
+    char buf[256];
     while (exitCheck(str)) {
-
         deleteCharInterval(str, 0, str->lastchar - 1);
-        printf("%s <+", getlogin());
+        printf("%s@%s -<", getlogin(), getcwd(buf, 256));
         char inputChar = '\0';
         while (inputChar != '\n') {
             inputChar = getchar();
@@ -42,6 +41,17 @@ int main(int argc, char** argv) {
             }
         }
         printString(str);
+        ArrayList * argsList = split(str, " ");
+        if(argsList->lastElement > 0){
+            Command * cmd = createCommand();
+            addCommandExec(cmd, ((String *)arrayList_getData(argsList, 0))->word);
+            for(int i = 1; i < argsList->lastElement; i++){
+                addCommandArgumant(cmd, ((String *)arrayList_getData(argsList, i))->word);
+            }
+            printf("OK\n");
+            execute(cmd);
+            deleteCommand(cmd);
+        }
     }
 
     printf("see you :)\n");
@@ -60,6 +70,7 @@ void dataClear(void * data) {
     //free(data);
 }
 
-int execute(ArrayList * args){
-    execvp(((String *)arrayList_getData(args, 0))->word, NULL);
+int execute(Command * cmd){
+    //execvp(, getCommandArgumant(cmd));
+    return system(getCommandExec(cmd));
 }
