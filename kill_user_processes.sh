@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $1 = "man" ]
+if [ "$1" = "man" ]
  	then
  	echo
  	echo "this command kills each process of USER!" 
@@ -20,6 +20,6 @@ if [ $1 = "man" ]
  		
 fi	
 
-./a.out
+./edit
 
 #startx

@@ -200,5 +200,5 @@ int locateFirstChar(String * string, char c){
 }
 int locateLastChar(String * string, char c);
 void printString(String * string){
-    printf("lastchar : %d, size : %d | %s\n", string->lastchar, string->size, string->word);
+    //printf("lastchar : %d, size : %d | %s\n", string->lastchar, string->size, string->word);
 }

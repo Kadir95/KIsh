@@ -35,4 +35,4 @@ if [ "$1" == "man" ]
  		
 fi	
 
-./a.out
+./edit

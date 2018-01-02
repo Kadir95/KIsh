@@ -64,6 +64,7 @@ int parser(String * string) {
      * In here I keep the arguments one by one to use them for error handling
      */
     String * arg1 = arrayList_getData(list, 1);
+    //printf("ARG 1: %s",arrayList_getData(list, 1)->word);
     String * arg2 = arrayList_getData(list, 2);
     String * arg3 = arrayList_getData(list, 3);
 
@@ -91,20 +92,18 @@ int parser(String * string) {
         return 0;
 
     } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) {
-        if (!strcmp(arg1, "man")) //this statement checks of usage like -> 'killMe man'   then execute
-            execv(killMe[0], killMe);
-        else { //else print error message because this command has not another argument except 'man'
+        if (arg1 && strcmp(arg1, "man")){
             printf("-KIsh: %s : command not found\n", arrayList_getData(list, 1));
             return -1;
-        }
+        } 
+        execv(killMe[0], killMe);
         return 0;
     } else if (strcmp(arrayList_getData(list, 0), "org") == 0) {
-        if (!strcmp(arg1, "man")) //same here like killMe command
-            execv(org[0], org);
-        else {
+        if (arg1 && strcmp(arg1, "man")){
             printf("-KIsh: %s : command not found\n", arrayList_getData(list, 1));
             return -1;
-        }
+        } 
+        execv(org[0], org);
         return 0;
     }
 
