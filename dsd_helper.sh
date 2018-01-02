@@ -61,5 +61,5 @@ function inverter()
  	fi	
 fi
 
-./edit
+./KIsh
 
