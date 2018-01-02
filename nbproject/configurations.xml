@@ -31,12 +31,15 @@
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>../../../Desktop/AssignmentKeeper.sh</itemPath>
+      <itemPath>AssignmentKeeper.sh</itemPath>
       <itemPath>Makefile</itemPath>
       <itemPath>../../../Desktop/addSwap.sh</itemPath>
+      <itemPath>addSwap.sh</itemPath>
       <itemPath>dsd_helper.sh</itemPath>
       <itemPath>kill_user_processes.sh</itemPath>
       <itemPath>organizeFiles.sh</itemPath>
       <itemPath>../../../Desktop/sshconnector.sh</itemPath>
+      <itemPath>sshconnector.sh</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>

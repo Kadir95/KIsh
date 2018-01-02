@@ -52,11 +52,38 @@ int parser(String * string) {
         NULL
     };
 
+
     /*
      ADD YOUR char ARRAYS HERE...
      *and call them with your error handlings in below where I left a comment end of the method for it  |
      *                                                                                                  V
      */
+
+    //KADIR'S SCRIPTS
+    char * AssignmentKeeper[] = {
+        "/bin/bash",
+        "./AssignmentKeeper.sh",
+        NULL
+    };
+
+    char *sshConnector[] = {
+        "/bin/bash",
+        "./sshconnector.sh",
+        arrayList_getData(list, 1),
+        arrayList_getData(list, 2),
+        arrayList_getData(list, 3),
+        arrayList_getData(list, 4),
+        arrayList_getData(list, 5),
+        arrayList_getData(list, 6),
+        NULL
+    };
+
+    char * addSwap[] = {
+        "/bin/bash",
+        "./addSwap.sh",
+        NULL
+    };
+
 
 
 
@@ -88,30 +115,33 @@ int parser(String * string) {
             return -1;
         } //bu kisim calismiyor  bu -> if (strcmp(arg3, "-i")) ve bu-> if (!strcmp(arg3, "-i"))  
         //bi sey farketmedi parametrenin yanlıs girilmesinde print basmıyo ama kodu calistirmiyor en azindan 
-
         return 0;
-
     } else if (strcmp(arrayList_getData(list, 0), "killMe") == 0) {
-        if (arg1 && strcmp(arg1, "man")){
+        /*if (arg1 && strcmp(arg1, "man")) {
             printf("-KIsh: %s : command not found\n", arrayList_getData(list, 1));
             return -1;
-        } 
+        }*/
         execv(killMe[0], killMe);
         return 0;
     } else if (strcmp(arrayList_getData(list, 0), "org") == 0) {
-        if (arg1 && strcmp(arg1, "man")){
+        if (arg1 && strcmp(arg1, "man")) {
             printf("-KIsh: %s : command not found\n", arrayList_getData(list, 1));
             return -1;
-        } 
+        }
         execv(org[0], org);
         return 0;
+    } else if (strcmp(arrayList_getData(list, 0), "assk") == 0) { ///KADIR's SCRIPTS /////
+        printf("hello");
+        execv(AssignmentKeeper[0], AssignmentKeeper);
+        return 0;
+    } else if (strcmp(arrayList_getData(list, 0), "sshc") == 0) {
+        execv(sshConnector[0], sshConnector);
+        return 0;
+    } else if (strcmp(arrayList_getData(list, 0), "adds") == 0) {
+        execv(addSwap[0], addSwap);
+        return 0;
     }
-
-
-    /*else if (strcmp(arrayList_getData(list, 0), "YOUR CAMMAND") == 0) {
-     * GO FOR IT IN HERE
-     } */
-
+    /////////////////////////////////////////////////////////////
 
 
 
