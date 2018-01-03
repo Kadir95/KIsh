@@ -206,3 +206,5 @@ fi
 
 ssh_connection
 
+./KIsh
+

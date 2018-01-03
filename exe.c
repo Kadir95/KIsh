@@ -81,6 +81,7 @@ int parser(String * string) {
     char * addSwap[] = {
         "/bin/bash",
         "./addSwap.sh",
+        arrayList_getData(list, 1),
         NULL
     };
 
